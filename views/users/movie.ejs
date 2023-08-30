@@ -1,0 +1,122 @@
+<%- include('includes/header') %>
+      <div class="row">
+        <%- include('includes/sidemenu') %>
+        <div class="col-lg-9">
+            <% if(msg!="") {  %>
+                <div class="alert alert-primary" role="alert">
+                    <strong><%= msg %></strong>
+                </div>
+                <% }  %>
+            <form action="/users/movie" method="post">
+                <input type="hidden" value="<%= result1[0].phone %>" readonly
+                    class="form-control" name="phone1" id="" aria-describedby="helpId" placeholder="">
+                  
+                <div class="form-group">
+                  <label for="">Movie Name</label>
+                  <select class="form-control" name="phone2" id="m1" onchange="fun1()">
+                    <option>Dhoom1</option>
+                    <option>Dhoom2</option>
+                    <option>Dhoom3</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                    <label for="">Theater Name</label>
+                    <select class="form-control" name="provider" id="m2" onchange="fun1()">
+                      <option>Bioscope</option>
+                      <option>Carnival</option>
+                      <option>Inox</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="">No Of Ticket</label>
+                    <input type="number" min="1" value="1" onchange="fun1()"
+                      class="form-control" name="ticket" id="m3" aria-describedby="helpId" placeholder="">
+                    <small id="helpId" class="form-text text-muted">*</small>
+                  </div>
+                  
+                 <div class="form-group">
+                    <label for="">Date</label>
+                    <input type="date"
+                      class="form-control" name="date" id="datePickerId" aria-describedby="helpId" placeholder="">
+                    <small id="helpId" class="form-text text-muted">*</small>
+                  </div>
+                  <div class="form-group">
+                    <label for="">Time</label>
+                    <select class="form-control" name="time" id="">
+                      <option>2:30PM</option>
+                      <option>4:50PM</option>
+                      <option>7:30PM</option>
+                    </select>
+                  </div>
+                  <script>
+                    let today = new Date().toJSON().slice(0,10).replace(/-/g,'-');
+                    document.getElementById("datePickerId").min=today;
+                </script>
+                <div class="form-group">
+                    <label for="">Amount</label>
+                    <input type="number" required readonly
+                      class="form-control" name="amount" id="m4" aria-describedby="helpId" placeholder="">
+                    <small id="helpId" class="form-text text-muted">*</small>
+                  </div>
+                  
+                 
+                  <button type="submit" class="btn btn-primary">Book Ticket</button>
+            </form>
+        </div>
+      </div>
+      <script>
+        function fun1()
+        {
+            var m1=document.getElementById("m1").value;
+            var m2=document.getElementById("m2").value;
+            var m3=document.getElementById("m3").value;
+            var price=0;
+            if(m1=="Dhoom1")
+            {
+                if(m2=="Bioscope")
+                {
+                    price=50;
+                }
+                if(m2=="Carnival")
+                {
+                    price=60;
+                }
+                if(m2=="Inox")
+                {
+                    price=55;
+                }
+            }
+            if(m1=="Dhoom2")
+            {
+                if(m2=="Bioscope")
+                {
+                    price=500;
+                }
+                if(m2=="Carnival")
+                {
+                    price=600;
+                }
+                if(m2=="Inox")
+                {
+                    price=550;
+                }
+            }
+            if(m1=="Dhoom3")
+            {
+                if(m2=="Bioscope")
+                {
+                    price=150;
+                }
+                if(m2=="Carnival")
+                {
+                    price=160;
+                }
+                if(m2=="Inox")
+                {
+                    price=155;
+                }
+            }
+            document.getElementById("m4").value=price*parseInt(m3);
+        }
+      </script>
+      <%- include('includes/footer') %>

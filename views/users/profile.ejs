@@ -1,0 +1,40 @@
+<%- include('includes/header') %>
+      <div class="row">
+        <%- include('includes/sidemenu') %>
+        <div class="col-lg-9">
+            <table class="table">
+                <thead>
+                    <tr class="bg-primary">
+                        <th>SlNo</th>
+                        <th>Phone</th>
+                        <th>Amount</th>
+                        <th>Details</th>
+                       
+                        <th>Wallet</th>
+                        <th>DateTime</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(let x=0;x< result1.length;x++){ %>
+                    <tr>
+                        <td scope="row"><%= x+1 %></td>
+                        <td><%= result1[x].phone %></td>
+                        <td>
+                            <% if( result1[x].type=="CR"){ %>
+                            <span class="text-success">+<%= result1[x].amount %></span>
+                            <% }else{ %>
+                                <span class="text-danger">-<%= result1[x].amount %></span>
+                            <% } %>
+                        </td>
+                        <td><%= result1[x].details %></td>
+                       
+                        <td><%= result1[x].wallet %></td>
+                        <td><%= result1[x].created_at %></td>
+                    </tr>
+                    <% } %>
+                    
+                </tbody>
+            </table>
+        </div>
+      </div>
+      <%- include('includes/footer') %>

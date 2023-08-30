@@ -1,0 +1,39 @@
+<%- include('includes/header') %>
+      <div class="row">
+        <%- include('includes/sidemenu') %>
+        <div class="col-lg-9">
+            <% if(msg!="") {  %>
+                <div class="alert alert-primary" role="alert">
+                    <strong><%= msg %></strong>
+                </div>
+                <% }  %>
+            <form action="/users/electric" method="post">
+                <input type="hidden" value="<%= result1[0].phone %>" readonly
+                    class="form-control" name="phone1" id="" aria-describedby="helpId" placeholder="">
+                  
+                <div class="form-group">
+                  <label for="">Consumer Id</label>
+                  <input type="text" 
+                    class="form-control" name="phone2" id="" aria-describedby="helpId" placeholder="">
+                  <small id="helpId" class="form-text text-muted">*</small>
+                </div>
+                <div class="form-group">
+                    <label for="">Amount</label>
+                    <input type="number" required
+                      class="form-control" name="amount" id="" aria-describedby="helpId" placeholder="">
+                    <small id="helpId" class="form-text text-muted">*</small>
+                  </div>
+                  <div class="form-group">
+                    <label for="">Provider</label>
+                    <select class="form-control" name="purpose" id="">
+                      <option>WBSEDCL</option>
+                      <option>DPL</option>
+                      <option>DSP</option>
+                    </select>
+                  </div>
+                 
+                  <button type="submit" class="btn btn-primary">Electric Bill Pay</button>
+            </form>
+        </div>
+      </div>
+      <%- include('includes/footer') %>
